@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.GitHub',
+    'allauth.socialaccount.providers.github',
     'rest_framework',
     'django_filters',
     'rest_framework_simplejwt.token_blacklist',

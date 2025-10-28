@@ -10,8 +10,7 @@ class RegistrationAdmin(UserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': (
-                'username', 'password', 'email', 'first_name', 'last_name',
-                'phone', 'country', 'token', 'data_registered'
+                'username', 'password', 'email', 'role', 'data_registered', 'token'
             ),
         }),
     ]

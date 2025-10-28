@@ -6,6 +6,5 @@ class DoctorsSpecialityFilterSet(FilterSet):
         model = Doctor
         fields = [
             'speciality',
-            'name',
-            'last_name',
+            'full_name',
         ]
