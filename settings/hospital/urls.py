@@ -3,10 +3,10 @@ from .views import *
 from django.urls import path, include
 
 router = DefaultRouter()
-router.register(r'doctors', DoctorViewSet, basename='doctor')
+router.register(r'doctor', DoctorViewSet, basename='doctor')
 router.register(r'appointment', AppointmentViewSet, basename='appointment')
-router.register(r'appointment_histories', AppointmentHistoryViewSet, basename='appointment_history')
-router.register(r'bills', BillViewSet, basename='bill')
+router.register(r'appointment_history', AppointmentHistoryViewSet, basename='appointment_history')
+router.register(r'bill', BillViewSet, basename='bill')
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
