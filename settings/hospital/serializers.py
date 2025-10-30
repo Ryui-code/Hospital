@@ -29,17 +29,17 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(**validated_data)
         return user
 
-class LoginSerializer(serializers.ModelSerializer):
+class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=32)
     password = serializers.CharField(write_only=True)
 
-    def validate(self, attrs):
-        user = authenticate(username=attrs['username'], password=attrs['password'])
+    def validate(self, data):
+        user = authenticate(username=data['username'], password=data['password'])
         if not user:
             raise AuthenticationFailed('Incorrect credentials.')
-        return user
+        return {'user': user}
 
-class LogoutSerializer(serializers.ModelSerializer):
+class LogoutSerializer(serializers.Serializer):
     token = serializers.CharField()
 
     def validate(self, attrs):
