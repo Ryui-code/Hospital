@@ -13,4 +13,4 @@ class CookieTokenAuthentication(BaseAuthentication):
         except CustomUser.DoesNotExist:
             raise AuthenticationFailed('Invalid token')
 
-        return (user, None)
+        return user, None
