@@ -6,6 +6,7 @@ from .filter import DoctorsSpecialityFilterSet
 from .permissions import IsNotPatientForDoctorAccess
 from .serializers import *
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 
 class RegisterView(GenericAPIView):
@@ -51,15 +52,13 @@ class LoginView(GenericAPIView):
 
         return response
 
-
-class LogoutView(GenericAPIView):
-    serializer_class = LoginSerializer
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response({'detail': 'Вы успешно вышли.'})
+        response = JsonResponse({'detail': 'Successfully logged out.'})
+        response.delete_cookie('auth_token')
+        return response
 
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
