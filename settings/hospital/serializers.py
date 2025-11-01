@@ -34,7 +34,7 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        user = authenticate(username=data['username'], password=data['password'])
+        user = authenticate(username=data['username'], password=data['password']) # Получить эти данные с созданных пользователей
         if not user:
             raise AuthenticationFailed('Incorrect credentials.')
         return {'user': user}

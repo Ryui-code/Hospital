@@ -1,6 +1,5 @@
 from rest_framework import viewsets
 from rest_framework.generics import GenericAPIView
-from rest_framework.response import Response
 from django.http import JsonResponse
 from .filter import DoctorsSpecialityFilterSet
 from .permissions import IsNotPatientForDoctorAccess
@@ -55,7 +54,7 @@ class LoginView(GenericAPIView):
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
+    def post(self):
         response = JsonResponse({'detail': 'Successfully logged out.'})
         response.delete_cookie('auth_token')
         return response
