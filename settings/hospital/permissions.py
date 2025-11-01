@@ -9,4 +9,4 @@ class IsNotPatientForDoctorAccess(BasePermission):
 
         if model_name == 'Doctor': # объект который мы используем
             return getattr(request.user, 'role', None) != 'Пациент' # не возвращать пользователя с ролью 'Пациент'
-        return True # возвращать пользователя если роль другая
+        return True # возвращать пользователя если выбранная роль другая

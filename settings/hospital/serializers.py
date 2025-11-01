@@ -25,8 +25,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        validated_data['token'] = secrets.token_hex(32)
-        user = CustomUser.objects.create_user(**validated_data)
+        validated_data['token'] = secrets.token_hex(32) # создать токен в переменную token после регистрации пользователя
+        user = CustomUser.objects.create_user(**validated_data) # сохранить созданный токен пользователю
         return user
 
 class LoginSerializer(serializers.Serializer):
