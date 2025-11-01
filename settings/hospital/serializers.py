@@ -20,8 +20,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         ]
 
         extra_kwargs = {
-            'password': {'write_only': True},
-            'token': {'read_only': True}
+            'password': {'write_only': True}, # Поле можно только записывать, но оно не будет отображаться в ответе API
+            'token': {'read_only': True} # Поле можно только читать, но его нельзя передать при создании/обновлении
         }
 
     def create(self, validated_data):

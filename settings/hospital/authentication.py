@@ -2,9 +2,9 @@ from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from .models import CustomUser
 
-class CookieTokenAuthentication(BaseAuthentication): # сохранить данные с регистрации пользователя для последующих запросов пользователя
+class CookieTokenAuthentication(BaseAuthentication): # Сохранить данные с регистрации пользователя для последующих запросов пользователя
     def authenticate(self, request):
-        token = request.COOKIES.get('auth_token') # получить токен с созданных пользователей (auth_token)
+        token = request.COOKIES.get('auth_token') # Получить токен с созданных пользователей (auth_token)
         if not token:
             return None
 
@@ -13,4 +13,4 @@ class CookieTokenAuthentication(BaseAuthentication): # сохранить дан
         except CustomUser.DoesNotExist:
             raise AuthenticationFailed('Invalid token')
 
-        return user, None # возвращать если есть пользователь с таким токеном, если нет ничего не возвращать
+        return user, None # Возвращать если есть пользователь с таким токеном, если нет ничего не возвращать
