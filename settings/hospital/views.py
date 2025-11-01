@@ -13,15 +13,15 @@ class RegisterView(GenericAPIView):
     serializer_class = RegisterSerializer
 
     def post(self, request):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+        serializer = self.get_serializer(data=request.data) # получить данные с сериалазатора
+        serializer.is_valid(raise_exception=True) # проверка регистрации пользователя
+        user = serializer.save() # сохранить пользователя в базу данных после проверки
         response = JsonResponse({'detail': 'Successfully registered.'})
         response.set_cookie(
             key='auth_token',
-            value=user.token,
+            value=user.token, # токен пользователя
             httponly=True,  # защита от JS
-            secure=False,   # поставь True, если используешь HTTPS
+            secure=False,   # False - если сайт http, True - если https
             samesite='Lax'  # или 'Strict' для большей безопасности
         )
         return response

@@ -3,7 +3,7 @@ from rest_framework.permissions import BasePermission
 class IsNotPatientForDoctorAccess(BasePermission):
     def has_permission(self, request, view):
         try:
-            model_name = view.get_queryset().model.__name__
+            model_name = view.get_queryset().model.__name__ # добавление способа взять определенную модель с models.py
         except Exception:
             return True
 
