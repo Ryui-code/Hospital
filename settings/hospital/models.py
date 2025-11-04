@@ -22,10 +22,9 @@ class CustomUser(AbstractUser):
     token = models.CharField(max_length=32, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.username}'
+        return self.username
 
 class Doctor(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=64)
     age = models.PositiveSmallIntegerField(validators=[MinValueValidator(18), MaxValueValidator(70)])
     birth_day = models.DateField()
@@ -36,7 +35,6 @@ class Doctor(models.Model):
         return self.full_name
 
 class Appointment(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=64)
     doctors_speciality = models.CharField(max_length=20, choices=SPECIALITY_CHOICES)
     text = models.TextField(default='<Напишите причину>')

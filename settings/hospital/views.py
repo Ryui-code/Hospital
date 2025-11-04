@@ -35,18 +35,14 @@ class LoginView(GenericAPIView):
         user = serializer.validated_data['user']
         refresh = RefreshToken.for_user(user)
 
-        response = JsonResponse({
-            'detail': 'Successfully logged in.',
-            'access': str(refresh.access_token),
-            'refresh': str(refresh),
-        })
+        response = JsonResponse({'detail': 'Successfully logged in.'})
 
         response.set_cookie(
             key='auth_token',
             value=user.token,
-            httponly=True,
+            httponly=True,  # Защита от JavaScript
             secure=False,   # поставь True, если используешь HTTPS
-            samesite='Lax'
+            samesite='Lax' # Strict - для большей безопасности
         )
 
         return response
@@ -54,7 +50,7 @@ class LoginView(GenericAPIView):
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self):
+    def post(self, request):
         response = JsonResponse({'detail': 'Successfully logged out.'})
         response.delete_cookie('auth_token')
         return response

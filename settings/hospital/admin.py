@@ -5,7 +5,7 @@ from .models import *
 
 
 @admin.register(CustomUser)
-class RegistrationAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin):
     fieldsets = [
         (None, {
             'classes': ('wide',),
