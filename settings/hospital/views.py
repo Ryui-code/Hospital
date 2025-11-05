@@ -50,7 +50,7 @@ class LoginView(GenericAPIView):
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
+    def get(self, request):
         response = JsonResponse({'detail': 'Successfully logged out.'})
         response.delete_cookie('auth_token')
         return response
@@ -74,4 +74,4 @@ class AppointmentHistoryViewSet(viewsets.ModelViewSet):
 class BillViewSet(viewsets.ModelViewSet):
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsNotPatientForDoctorAccess ,IsAuthenticated]
