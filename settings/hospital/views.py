@@ -33,8 +33,6 @@ class LoginView(GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        refresh = RefreshToken.for_user(user)
-
         response = JsonResponse({'detail': 'Successfully logged in.'})
 
         response.set_cookie(
@@ -44,8 +42,8 @@ class LoginView(GenericAPIView):
             secure=False,   # поставь True, если используешь HTTPS
             samesite='Lax' # Strict - для большей безопасности
         )
-
         return response
+
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
@@ -54,6 +52,7 @@ class LogoutView(APIView):
         response = JsonResponse({'detail': 'Successfully logged out.'})
         response.delete_cookie('auth_token')
         return response
+
 
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
