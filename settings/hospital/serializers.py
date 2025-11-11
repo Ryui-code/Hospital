@@ -13,7 +13,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = [
             'username',
             'password',
-            'email',
             'role',
             'data_registered',
             'token'

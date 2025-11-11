@@ -159,7 +159,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-PHONENUMBER_DEFAULT_REGION = 'KG'  # Кыргызстан
+PHONENUMBER_DEFAULT_REGION = 'KG'
 PHONENUMBER_DB_FORMAT = 'INTERNATIONAL'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
